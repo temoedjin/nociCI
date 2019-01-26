@@ -20,7 +20,6 @@ describe('When logged in', async () => {
   test('can see blog create', async () => {
     const label = await page.getContentsOf('form label');
     expect(label).toEqual('Blog Title');
-    const url = await page.url();
   });
 
   describe('and using valid input', async () => {
