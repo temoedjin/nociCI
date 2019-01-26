@@ -35,11 +35,11 @@ class CustomPage {
   }
 
   async getContentsOf(selector) {
-    return await this.page.$eval(selector, el => el.innerHTML);
+    return this.page.$eval(selector, el => el.innerHTML);
   }
 
-  async get(url) {
-    return await this.page.evaluate(
+  get(url) {
+    return this.page.evaluate(
       p =>
         fetch(p, {
           method: 'GET',
@@ -52,8 +52,8 @@ class CustomPage {
     );
   }
 
-  async post(url, body) {
-    return await this.page.evaluate(
+  post(url, body) {
+    return this.page.evaluate(
       (p, b) =>
         fetch(p, {
           method: 'POST',
@@ -68,7 +68,7 @@ class CustomPage {
     );
   }
 
-  async execRequests(actions) {
+  execRequests(actions) {
     return Promise.all(
       actions.map(({ method, path, data }) => {
         return this[method](path, data);
